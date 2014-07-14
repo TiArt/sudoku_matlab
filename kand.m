@@ -24,7 +24,7 @@ for I = 1:n^2
 			  sub(j*2:j*2+1)=A(I-j*n-2:I-j*n-1);
 		      end
 		else
-			In=zeilens; %zwishen
+			In=zeilens; %zwishen spalte
 			for j=0:sqrt(n)-2
 				if j==spalte
 					j=j+1;
