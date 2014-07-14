@@ -1,4 +1,4 @@
-function [] = kand(A,n) 
+function [A] = kand(A,n) 
  
 for I = 1:n^2
     if A(I)==0
@@ -34,8 +34,30 @@ for I = 1:n^2
 		end
 	end
       
-
-           B=sort(unique(cat(2, A(zeilens:9:81), A(spaltens:1:spaltene), sub(1),sub(2),sub(3))))
+	    %Um eins nach hinten da bei sort eine führende null gibt
+	B=sort(unique(cat(2, A(zeilens:9:81), A(spaltens:1:spaltene), sub(1),sub(2),sub(3))))
+	%add = n-length(B); % auffüllen auf 8 einträge
+	i=1;
+	j=2;
+	if length(B) == 1
+		C=[1:n]
+	else
+		C=zeros(1,n);
+		length(C)
+		for k=1:n %%Kann man auch mit weniger itarationen machen. Dann braucht man sort wieder
+		    if B(j)~=k
+		      C(i)=k;
+		      i=i+1;
+		    elseif j<length(B)
+		      j=j+1;
+		    end
+		end
+		length(C)
+	end
+	
+	%B=cat(2,B,zeros(1,add))
+	A(I+n^2:n^2:(n+1)*n^2)=C;
            %A=sort(unique(cat(2, A(zeilens:9:81), A(spaltens:1:spaltene), A(1:3), A(10:12), A(19:21))))
     end
 end
+A
