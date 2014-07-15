@@ -2,7 +2,7 @@ function [A] = kand(A,n)
  
 for I = 1:n^2
     if A(I)==0
-	  spalte=idivide (int8(I-1), int8(n), 'floor');
+	  spalte=idivide (int8(I-1), int8(n), 'floor'); %wegen I=n in der 0. spalte
 	  spaltens=spalte*n+1;
 	  spaltene=spaltens+n-1;
 	  zeilens=mod(I,n);
@@ -13,13 +13,11 @@ for I = 1:n^2
            sub=zeros(1:(sqrt(n)-1)*2);
            
 	if 0==mod(I,sqrt(n))%letzte zeile submatrix
-		if mod(spalte,sqrt(n)) == 0 %rechte spalte
+		if mod(spalte,sqrt(n)) == 0 %linke spalte
 		      for j=1:sqrt(n)-1
-			  I+j*n-2
-			  I+j*n-1
 			  sub(j*2:j*2+1)=A(I+j*n-2:I+j*n-1);
 		      end
-		elseif spalte == sqrt(n)-1 %linke spalte
+		elseif spalte == sqrt(n)-1 %rechte spalte
 		      for j=1:sqrt(n)-1
 			  sub(j*2:j*2+1)=A(I-j*n-2:I-j*n-1);
 		      end
