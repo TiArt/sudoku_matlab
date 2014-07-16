@@ -46,7 +46,7 @@ for I = 1:n^2
 		else
 			In=zeilens+n*sqrt(n)*idivide (int8(I-1), int8(n*sqrt(n)), 'floor'); %zwischen spalte
 			for j=0:sqrt(n)-2
-				if j==spalte
+				if mod(j,sqrt(n))==spalte
 					j=j+1;
 				end
 				sub((j+1)*2:(j+1)*2+1)=A(In+j*n-2:In+j*n-1);
