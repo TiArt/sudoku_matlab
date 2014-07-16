@@ -22,7 +22,7 @@ for I = 1:n^2
 			  sub(j*2:j*2+1)=A(I-j*n-2:I-j*n-1);
 		      end
 		else
-			In=zeilens; %zwishen spalte
+			In=zeilens; %zwischen spalte
 			for j=0:sqrt(n)-2
 				if j==spalte
 					j=j+1;
@@ -33,15 +33,14 @@ for I = 1:n^2
 	end
       
 	    %Um eins nach hinten da bei sort eine führende null gibt
-	B=sort(unique(cat(2, A(zeilens:9:81), A(spaltens:1:spaltene), sub(1),sub(2),sub(3))))
+	B=sort(unique(cat(2, A(zeilens:9:81), A(spaltens:1:spaltene), sub(1),sub(2),sub(3))));
 	%add = n-length(B); % auffüllen auf 8 einträge
 	i=1;
 	j=2;
 	if length(B) == 1
-		C=[1:n]
+		C=[1:n];
 	else
 		C=zeros(1,n);
-		length(C)
 		for k=1:n %%Kann man auch mit weniger itarationen machen. Dann braucht man sort wieder
 		    if B(j)~=k
 		      C(i)=k;
@@ -50,7 +49,6 @@ for I = 1:n^2
 		      j=j+1;
 		    end
 		end
-		length(C)
 	end
 	
 	%B=cat(2,B,zeros(1,add))
@@ -58,4 +56,3 @@ for I = 1:n^2
            %A=sort(unique(cat(2, A(zeilens:9:81), A(spaltens:1:spaltene), A(1:3), A(10:12), A(19:21))))
     end
 end
-A
