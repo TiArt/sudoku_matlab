@@ -1,5 +1,7 @@
 function [A] = kand(A,n) 
  
+rtn=sqrt(n);
+
 for I = 1:n^2
     if A(I)==0
 	  spalte=idivide (int8(I-1), int8(n), 'floor'); %wegen I=n in der 0. spalte
@@ -10,53 +12,47 @@ for I = 1:n^2
 		zeilens=9;
 	   end
            zeilene=zeilens+(n-1)*n;
-           sub=zeros(1:(sqrt(n)-1)*2);
-           
-	%%%%%%%%%Oberezeile submatrix
-	if 1==mod(I,sqrt(n))%erste zeile submatrix
-		if mod(spalte,sqrt(n)) == 0 %linke spalte
-		      for j=1:sqrt(n)-1
-			  sub(j*2-1:j*2)=A(I+j*n+1:I+j*n+2);
+           sub=zeros(1:(rtn-1)*2);
+	if 1==mod(I,rtn) %%%Oberezeile submatrix
+		if mod(spalte,rtn) == 0 %linke spalte
+		      for j=1:rtn-1
+                         sub(j*2-1:j*2)=A(I+j*n+1:I+j*n+2);
 		      end
-		elseif mod(spalte,sqrt(n)) == sqrt(n)-1 %rechte spalte
-		      for j=1:sqrt(n)-1
-			  sub(j*2-1:j*2)=A(I-j*n+1:I-j*n+2);
+		elseif mod(spalte,rtn) == rtn-1 %rechte spalte
+		      for j=1:rtn-1
+                         sub(j*2-1:j*2)=A(I-j*n+1:I-j*n+2);
 		      end
 		else
-			In=zeilens+n*sqrt(n)*idivide (int8(I-1), int8(n*sqrt(n)), 'floor'); %zwischen spalte
-			for j=0:sqrt(n)-2
-				if j==spalte
+                       In=zeilens+n*rtn*idivide (int8(I-1), int8(n*rtn), 'floor'); %zwischen spalte
+                       for j=0:rtn-2
+                               if j==spalte
 					j=j+1;
 				end
 				sub((j+1)*2:(j+1)*2+1)=A(In+j*n+1:In+j*n+2);
 			end
 		end
-	end
-	%%%%%%%%%Oberezeile submatrix ENDE
-	%%%%%%%%%Unterzeile submatrix
-	if 0==mod(I,sqrt(n))%letzte zeile submatrix
-		if mod(spalte,sqrt(n)) == 0 %linke spalte
-		      for j=1:sqrt(n)-1
-			  sub(j*2-1:j*2)=A(I+j*n-2:I+j*n-1);
+       elseif 0==mod(I,rtn) %%%Unterzeile submatrix
+               if mod(spalte,rtn) == 0 %linke spalte
+                     for j=1:rtn-1
+                         sub(j*2-1:j*2)=A(I+j*n-2:I+j*n-1);
 		      end
-		elseif mod(spalte,sqrt(n)) == sqrt(n)-1 %rechte spalte
-		      for j=1:sqrt(n)-1
-			  sub(j*2-1:j*2)=A(I-j*n-2:I-j*n-1);
+               elseif mod(spalte,rtn) == rtn-1 %rechte spalte
+                     for j=1:rtn-1
+                         sub(j*2-1:j*2)=A(I-j*n-2:I-j*n-1);
 		      end
 		else
-			In=zeilens+n*sqrt(n)*idivide (int8(I-1), int8(n*sqrt(n)), 'floor'); %zwischen spalte
-			for j=0:sqrt(n)-2
-				if mod(j,sqrt(n))==spalte
+                       In=zeilens+n*rtn*idivide (int8(I-1), int8(n*rtn), 'floor'); %zwischen spalte
+                       for j=0:rtn-2
+                               if mod(j,rtn)==spalte
 					j=j+1;
 				end
 				sub((j+1)*2:(j+1)*2+1)=A(In+j*n-2:In+j*n-1);
 			end
 		end
 	end
-	%%%%%%%%%Unterzeile submatrix ENDE
 
 	    %Um eins nach hinten da bei sort eine führende null gibt
-	B=sort(unique(cat(2, A(zeilens:n:n^2), A(spaltens:1:spaltene), sub(1:(sqrt(n)-1)*2))));
+	B=sort(unique(cat(2, A(zeilens:n:n^2), A(spaltens:1:spaltene), sub(1:(rtn-1)*2))));
 	%add = n-length(B); % auffüllen auf 8 einträge
 	i=1;
 	j=2;
