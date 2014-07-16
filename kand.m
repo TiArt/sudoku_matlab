@@ -15,14 +15,14 @@ for I = 1:n^2
 	if 0==mod(I,sqrt(n))%letzte zeile submatrix
 		if mod(spalte,sqrt(n)) == 0 %linke spalte
 		      for j=1:sqrt(n)-1
-			  sub(j*2:j*2+1)=A(I+j*n-2:I+j*n-1);
+			  sub(j*2-1:j*2)=A(I+j*n-2:I+j*n-1);
 		      end
-		elseif spalte == sqrt(n)-1 %rechte spalte
+		elseif mod(spalte,sqrt(n)) == sqrt(n)-1 %rechte spalte
 		      for j=1:sqrt(n)-1
-			  sub(j*2:j*2+1)=A(I-j*n-2:I-j*n-1);
+			  sub(j*2-1:j*2)=A(I-j*n-2:I-j*n-1);
 		      end
 		else
-			In=zeilens; %zwischen spalte
+			In=zeilens+n*sqrt(n)*idivide (int8(I-1), int8(n*sqrt(n)), 'floor'); %zwischen spalte
 			for j=0:sqrt(n)-2
 				if j==spalte
 					j=j+1;
@@ -33,7 +33,7 @@ for I = 1:n^2
 	end
       
 	    %Um eins nach hinten da bei sort eine führende null gibt
-	B=sort(unique(cat(2, A(zeilens:9:81), A(spaltens:1:spaltene), sub(1),sub(2),sub(3))));
+	B=sort(unique(cat(2, A(zeilens:9:81), A(spaltens:1:spaltene), sub(1:(sqrt(n)-1)*2))));
 	%add = n-length(B); % auffüllen auf 8 einträge
 	i=1;
 	j=2;
