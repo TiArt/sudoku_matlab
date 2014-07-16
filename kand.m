@@ -56,7 +56,7 @@ for I = 1:n^2
 	%%%%%%%%%Unterzeile submatrix ENDE
 
 	    %Um eins nach hinten da bei sort eine führende null gibt
-	B=sort(unique(cat(2, A(zeilens:9:81), A(spaltens:1:spaltene), sub(1:(sqrt(n)-1)*2))));
+	B=sort(unique(cat(2, A(zeilens:n:n^2), A(spaltens:1:spaltene), sub(1:(sqrt(n)-1)*2))));
 	%add = n-length(B); % auffüllen auf 8 einträge
 	i=1;
 	j=2;
