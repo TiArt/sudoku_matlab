@@ -12,7 +12,7 @@ for I = 1:n^2
 		zeilens=n;
 	   end
            zeilene=zeilens+(n-1)*n;
-           sub=zeros(1:(rtn-1)^2);
+           sub=zeros((rtn-1));
 	if 1==mod(I,rtn) %%%Oberezeile submatrix
 		if mod(spalte,rtn) == 0 %linke spalte
 		      for j=1:rtn-1
@@ -30,7 +30,7 @@ for I = 1:n^2
 				if j==mod(spalte,rtn)
 					j=j+1;
 				end
-				sub((jn+1)*(rtn-1)-(rtn-2):(jn+1)*(rtn-1))=A(In+j*n+1:In+j*n+(rtn-1));
+				sub(jn*(rtn-1)+1:jn*(rtn-1)+(rtn-1))=A(In+j*n+1:In+j*n+(rtn-1));
 				j=j+1;
 				jn=jn+1;
 			end
@@ -52,7 +52,7 @@ for I = 1:n^2
 				if j==mod(spalte,rtn)
 					j=j+1;
 				end
-				sub((jn+1)*(rtn-1)-(rtn-2):(jn+1)*(rtn-1))=A(In+j*n-(rtn-1):In+j*n-1);
+				sub(jn*(rtn-1)+1:jn*(rtn-1)+(rtn-1))=A(In+j*n-(rtn-1):In+j*n-1);
 				j=j+1;
 				jn=jn+1;
 			end
