@@ -29,7 +29,6 @@ for I = 1:n^2
 			while j <= rtn-1
 				if j==mod(spalte,rtn)
 					j=j+1;
-					jn=j-1;
 				end
 				sub((jn+1)*(rtn-1)-(rtn-2):(jn+1)*(rtn-1))=A(In+j*n+1:In+j*n+(rtn-1));
 				j=j+1;
@@ -52,7 +51,6 @@ for I = 1:n^2
 			while j <= rtn-1
 				if j==mod(spalte,rtn)
 					j=j+1;
-					jn=j-1;
 				end
 				sub((jn+1)*(rtn-1)-(rtn-2):(jn+1)*(rtn-1))=A(In+j*n-(rtn-1):In+j*n-1);
 				j=j+1;
