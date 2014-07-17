@@ -58,7 +58,28 @@ for I = 1:n^2
 			end
 		end
 	else %%%Zwischenzeilen submatrix
-
+		y=idivide (int32(zeilens-1), int32(rtn), 'floor');
+		x=idivide (int32(spalte), int32(rtn), 'floor');
+		offset=1+y*rtn+x*n*rtn;
+		yj=0;
+		yi=0;
+		while yj<rtn-1
+			xj=0;
+			xi=0;
+			if yj==mod(zeilens,rtn)-1
+					yi=yi+1;
+			end
+			while xj<rtn-1
+				if xj==mod(spalte,rtn)
+					xi=xi+1;
+				end
+				sub(yj+1,xj+1)=A(offset+yi+xi*n)
+				xj=xj+1;
+				xi=xi+1;
+			end
+			yj=yj+1;
+			yi=yi+1;
+		end
 	end
 	    %Um eins nach hinten da bei sort eine führende null gibt
 	B=sort(unique(cat(2, A(zeilens:n:n^2), A(spaltens:1:spaltene), sub(1:(rtn-1)^2))));
