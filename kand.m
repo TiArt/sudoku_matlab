@@ -73,7 +73,7 @@ for I = 1:n^2
 				if xj==mod(spalte,rtn)
 					xi=xi+1;
 				end
-				sub(yj+1,xj+1)=A(offset+yi+xi*n)
+				sub(yj+1,xj+1)=A(offset+yi+xi*n);
 				xj=xj+1;
 				xi=xi+1;
 			end
